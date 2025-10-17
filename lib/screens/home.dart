@@ -13,10 +13,9 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeaderSection(),
+          children: <Widget>[
+            HeaderSection(title: 'Mes recettes'),
             SizedBox(height: 16),
-            // Page
           ],
         ),
       ),

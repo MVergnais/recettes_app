@@ -35,13 +35,7 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
       items: const [
-        BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(Icons.home)),
-        BottomNavigationBarItem(
-          label: 'Détail de la recette',
-          icon: Icon(Icons.document_scanner),
-        ),
+        BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
         BottomNavigationBarItem(
           label: 'Ajouter une recette',
           icon: Icon(Icons.add_circle),
