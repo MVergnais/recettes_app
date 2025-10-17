@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            HeaderSection(title: 'Mes recettes'),
+            HeaderSection(title: 'Mes recettes', showBackButton: false),
             SizedBox(height: 16),
           ],
         ),
