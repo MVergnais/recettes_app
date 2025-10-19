@@ -1,9 +1,11 @@
+import '../recipe.dart';
+
 final List<Recipe> recipesData = [
   Recipe(
     id: '1',
     title: 'Tarte aux pommes',
     duration: 45,
-    difficulty: 'Moyen',
+    difficulty: 'Difficile',
     ingredients: [
       '1 pâte feuilletée',
       '4 pommes',
@@ -19,7 +21,8 @@ final List<Recipe> recipesData = [
       'Saupoudrer de sucre et ajouter des noisettes de beurre',
       'Enfourner pendant 30 minutes',
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=400',
+    imageUrl:
+        'https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=400',
   ),
   Recipe(
     id: '2',
@@ -62,7 +65,8 @@ final List<Recipe> recipesData = [
       'Hors du feu, ajouter le mélange œufs-parmesan',
       'Bien mélanger et poivrer généreusement',
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400',
+    imageUrl:
+        'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400',
   ),
   Recipe(
     id: '4',
@@ -85,55 +89,7 @@ final List<Recipe> recipesData = [
       'Enfourner pendant 1h30',
       'Arroser régulièrement avec le jus de cuisson',
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400',
-  ),
-  Recipe(
-    id: '5',
-    title: 'Tiramisu',
-    duration: 30,
-    difficulty: 'Facile',
-    ingredients: [
-      '250g de mascarpone',
-      '3 œufs',
-      '100g de sucre',
-      '200g de biscuits à la cuillère',
-      '250ml de café fort',
-      'Cacao en poudre',
-    ],
-    steps: [
-      'Séparer les blancs des jaunes d\'œufs',
-      'Mélanger jaunes, sucre et mascarpone',
-      'Monter les blancs en neige et les incorporer',
-      'Tremper les biscuits dans le café',
-      'Alterner couches de biscuits et de crème',
-      'Saupoudrer de cacao et réfrigérer 4h',
-    ],
-    imageUrl: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400',
-  ),
-  Recipe(
-    id: '6',
-    title: 'Bœuf bourguignon',
-    duration: 180,
-    difficulty: 'Difficile',
-    ingredients: [
-      '1kg de bœuf à braiser',
-      '200g de lardons',
-      '3 carottes',
-      '2 oignons',
-      '750ml de vin rouge',
-      '2 gousses d\'ail',
-      'Bouquet garni',
-      '250g de champignons',
-    ],
-    steps: [
-      'Couper la viande en gros cubes',
-      'Faire revenir les lardons et la viande',
-      'Ajouter les légumes coupés',
-      'Flamber avec le vin rouge',
-      'Ajouter ail et bouquet garni',
-      'Laisser mijoter 2h30 à feu doux',
-      'Ajouter les champignons 30 min avant la fin',
-    ],
-    imageUrl: 'https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=400',
+    imageUrl:
+        'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400',
   ),
 ];

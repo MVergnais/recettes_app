@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
-import '../widgets/succes_message.dart';
+import '../models/recipe.dart';
+import '../models/data/initial_recipes.dart';
 import '../widgets/header_section.dart';
 import '../widgets/navigation_bar_app.dart';
+import '../widgets/succes_message.dart';
 import '../widgets/recipe_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // Liste des initial_recipes
+  List<Recipe> recipes = recipesData;
+
+  // Afficher/masquer le succes_message
+  bool showSuccessMessage = true;
 
   @override
   Widget build(BuildContext context) {
@@ -13,43 +26,71 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          const HeaderSection(
-            title: 'Mes recettes',
-            showBackButton: false,
-          ),
-          // Bannière de succès (optionnelle)
-          const SuccessMessage(
-            message: 'Recette ajoutée avec succès !',
-          ),
+          const HeaderSection(title: 'Mes Recettes', showBackButton: false),
+
+          // succes_message (si visible)
+          if (showSuccessMessage)
+            const SuccessMessage(message: 'Recette ajoutée avec succès !'),
+
           // Liste des recettes
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              children: [
-                RecipeCard(
-                  title: 'Tarte aux pommes',
-                  duration: 45,
-                  difficulty: 'Moyen',
-                  imageUrl: null,
-                  onTap: () {
-                    Navigator.pushNamed(context, '/detail');
-                  },
-                ),
-                RecipeCard(
-                  title: 'Salade César',
-                  duration: 15,
-                  difficulty: 'Facile',
-                  imageUrl: null,
-                  onTap: () {
-                    Navigator.pushNamed(context, '/detail');
-                  },
-                ),
-              ],
-            ),
+            child: recipes.isEmpty ? _buildEmptyState() : _buildRecipeList(),
           ),
         ],
       ),
       bottomNavigationBar: const NavigationBarApp(),
     );
   }
+
+  // Affiche la liste des recettes
+  Widget _buildRecipeList() {
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      itemCount: recipes.length,
+      itemBuilder: (context, index) {
+        final recipe = recipes[index];
+
+        return RecipeCard(
+          title: recipe.title,
+          duration: recipe.duration,
+          difficulty: recipe.difficulty,
+          imageUrl: recipe.imageUrl,
+          onTap: () {
+            Navigator.pushNamed(context, '/detail');
+          },
+        );
+      },
+    );
+  }
+
+  // Widget état vide
+  Widget _buildEmptyState() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.restaurant_menu, size: 80, color: Colors.grey.shade400),
+            const SizedBox(height: 16),
+            Text(
+              'Aucune recette disponible',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey.shade700,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Commencez par ajouter votre première recette !',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
+

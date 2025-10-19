@@ -7,7 +7,7 @@ class HeaderSection extends StatelessWidget {
   const HeaderSection({
     Key? key,
     required this.title,
-    this.showBackButton = true,
+    this.showBackButton = false,
   }) : super(key: key);
 
   @override
@@ -16,32 +16,49 @@ class HeaderSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
       width: double.infinity,
       color: Colors.orange,
-      child: Row(
-        children: [
-          if (showBackButton)
-            IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () {
-                Navigator.of(context).maybePop();
-              },
-            )
-          else
-            const SizedBox(width: 48),
-          Expanded(
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+      child: showBackButton
+          ? _buildWithBackButton(context)
+          : _buildWithoutBackButton(),
+    );
+  }
+
+  Widget _buildWithBackButton(BuildContext context) {
+    return Row(
+      children: [
+        IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+        ),
+        Expanded(
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
           ),
+        ),
+        const SizedBox(width: 48),
+      ],
+    );
+  }
 
-          const SizedBox(width: 48),
-        ],
-      ),
+  Widget _buildWithoutBackButton() {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

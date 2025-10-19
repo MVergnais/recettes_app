@@ -20,9 +20,6 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
         Navigator.pushNamed(context, '/home');
         break;
       case 1:
-        Navigator.pushNamed(context, '/detail');
-        break;
-      case 2:
         Navigator.pushNamed(context, '/add');
         break;
     }
@@ -33,9 +30,14 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       currentIndex: _selectedIndex,
+      selectedItemColor: Colors.orange,
+      unselectedItemColor: Colors.grey,
       onTap: _onItemTapped,
       items: const [
-        BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
+        BottomNavigationBarItem(
+          label: 'Home',
+          icon: Icon(Icons.home),
+        ),
         BottomNavigationBarItem(
           label: 'Ajouter une recette',
           icon: Icon(Icons.add_circle),

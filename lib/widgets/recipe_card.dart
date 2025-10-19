@@ -21,40 +21,32 @@ class RecipeCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      color: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image avec dégradé
+            // dégradé si il y a pas d'image
             ClipRRect(
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(16),
               ),
-              child: Container(
-                height: 200,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: getGradientForDifficulty(difficulty),
-                ),
-                child: imageUrl != null
-                    ? Image.network(
-                  imageUrl!,
-                  height: 200,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return buildPlaceholder();
-                  },
-                )
-                    : buildPlaceholder(),
-              ),
+              child: imageUrl != null && imageUrl!.isNotEmpty
+                  ? Image.network(
+                      imageUrl!,
+                      height: 200,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return buildPlaceholder(difficulty);
+                      },
+                    )
+                  : buildPlaceholder(difficulty),
             ),
-            // Informations
+
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -96,12 +88,18 @@ class RecipeCard extends StatelessWidget {
       ),
     );
   }
-  Widget buildPlaceholder() {
-    return Center(
-      child: Icon(
-        Icons.restaurant,
-        size: 60,
-        color: Colors.white.withOpacity(0.7),
+
+  Widget buildPlaceholder(String difficulty) {
+    return Container(
+      height: 200,
+      width: double.infinity,
+      decoration: BoxDecoration(gradient: getGradientForDifficulty(difficulty)),
+      child: Center(
+        child: Icon(
+          Icons.restaurant,
+          size: 60,
+          color: Colors.white.withOpacity(0.7),
+        ),
       ),
     );
   }
@@ -152,10 +150,7 @@ class RecipeCard extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 6,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: color.withOpacity(0.15),
         borderRadius: BorderRadius.circular(20),
@@ -171,3 +166,4 @@ class RecipeCard extends StatelessWidget {
     );
   }
 }
+
