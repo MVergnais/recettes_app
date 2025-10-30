@@ -5,6 +5,7 @@ import '../widgets/header_section.dart';
 import '../widgets/navigation_bar_app.dart';
 import '../widgets/succes_message.dart';
 import '../widgets/recipe_card.dart';
+import 'detail.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -56,7 +57,13 @@ class _HomePageState extends State<HomePage> {
           difficulty: recipe.difficulty,
           imageUrl: recipe.imageUrl,
           onTap: () {
-            Navigator.pushNamed(context, '/detail');
+            // Navigation vers la page détail
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailPage(recipe: recipe),
+              ),
+            );
           },
         );
       },
@@ -93,4 +100,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
